@@ -14,6 +14,6 @@ def index():
     "msg": "Hello Python REST API"
   })
 
-# Execute the app instance wether is the main file
+# Execute the app instance
 if __name__ == "__main__":
   app.run(debug=True)
