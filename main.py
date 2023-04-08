@@ -9,7 +9,6 @@ CORS(app)
 # GET Endpoint =============================================================================
 @app.route("/", methods=["GET"])
 def index():
-  # args = request.args.to_dict()
   return jsonify({"msg": "Hello Python REST API"})
 
 # POST Endpoint =============================================================================
