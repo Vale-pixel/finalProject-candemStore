@@ -15,5 +15,6 @@ def index():
   })
 
 # Execute the app instance
+# The app will run locally in: http://localhost:5001/ after execution
 if __name__ == "__main__":
-  app.run(debug=True)
+  app.run(debug=True, port=5001)
