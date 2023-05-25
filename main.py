@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 # Enable CORS policies
 CORS(app)
-
+#alo
 # GET Endpoint =============================================================================
 @app.route("/", methods=["GET"])
 def index():
