@@ -1,15 +1,23 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import pandas as pd
 
 # Declare the APP server instance
 app = Flask(__name__)
 # Enable CORS policies
 CORS(app)
-#alo
+
+df = pd.read_csv('CANDEM.csv')
+names = list(df['Name'])
+
 # GET Endpoint =============================================================================
-@app.route("/", methods=["GET"])
+@app.route("/names", methods=["GET"])
 def index():
-  return jsonify({"msg": "Hello Python REST API"})
+  global names
+  return jsonify({
+    "names": names, 
+    "columns": list(df.columns)
+  })
 
 # POST Endpoint =============================================================================
 @app.route('/post_endpoint', methods=['POST'])
@@ -18,7 +26,8 @@ def create_data():
     data = request.get_json()
     if not data:
         return (jsonify({'error': 'No data provided'}), 400)
-    return (jsonify({'response': 'ok all good'}), 201)
+    print(df[df['Name'] == data['person1']])
+    return (jsonify({'response': 'ok all good', 'data': data}), 201)
 
 # Execute the app instance
 # The app will run locally in: http://localhost:5001/ after execution
