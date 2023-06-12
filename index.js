@@ -57,5 +57,14 @@ const postEndpoint = async () => {
   }
 }
 
-getMain();
-postEndpoint();
+//getMain();
+//postEndpoint();
+
+// Get the button element
+const button = document.getElementById("initBtn");
+
+// Add a click event listener to the button
+button.addEventListener("click", function() {
+  // Navigate to index
+  window.location.href = "index.html";
+});

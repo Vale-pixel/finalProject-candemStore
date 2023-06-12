@@ -1,0 +1,30 @@
+.hidden {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 20px 0px 0px 0px;
+    box-sizing: border-box;
+    font-family: 'Be Vietnam Pro', sans-serif;
+
+}
+
+body {
+    margin: 0%;
+    background-color: #171717 !important;
+
+}
+main {
+
+    padding: 0px;
+    height: auto;
+    background-color: #171717;
+}
+h1 {
+    margin: 0%;
+    color: #DEDEDE !important;
+}
+h4 {
+    color: #DEDEDE !important;
+}
