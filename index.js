@@ -46,16 +46,16 @@ const getMain = async () => {
     const friends = response.rows
     maxCostumer = usernames.length
 
-    //console.log(response.rows)
-    usernames.forEach((row)=>{
-      //<option value="btc">BTC</option>
-      const nameOption = document.createElement('option')
-      nameOption.classList.add("form-select")
-      nameOption.id = "inputGroupSelect01"
-      nameOption.innerText = row[0]
-      nameOption.setAttribute('value', row)
-      dropName.appendChild(nameOption)
-    })
+    // //console.log(response.rows)
+    // usernames.forEach((row)=>{
+    //   //<option value="btc">BTC</option>
+    //   const nameOption = document.createElement('option')
+    //   nameOption.classList.add("form-select")
+    //   nameOption.id = "inputGroupSelect01"
+    //   nameOption.innerText = row[0]
+    //   nameOption.setAttribute('value', row)
+    //   dropName.appendChild(nameOption)
+    // })
 
     let quantityArray = Array.from({length: maxCostumer})
     quantityArray = quantityArray.map((x,i) => i)
@@ -146,9 +146,9 @@ function setTastes() {
   console.log(costumerValues)
   postEndpoint(costumerValues);
 }
-dropName.addEventListener('change',(e)=>{
-  console.log(e.target.value)
-})
+// dropName.addEventListener('change',(e)=>{
+//   console.log(e.target.value)
+// })
 
 
 
