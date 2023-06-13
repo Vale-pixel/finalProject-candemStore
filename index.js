@@ -17,6 +17,10 @@ const populateNamesList = (namesList) => {
   });
 }
 
+const dropName = document.getElementById('inputGroupSelect01')
+const dropQuantity = document.getElementById('inputGroupSelect02')
+let maxCostumer;
+
 // fetch(`${DOMAIN}${PORT}/${RESOURCE}`)
 //   .then(raw => raw.json())
 //   .then(response => {
@@ -25,15 +29,41 @@ const populateNamesList = (namesList) => {
 //   })
 //   .catch(e => console.log(e));
 
+
 const getMain = async () => {
   try {
     const raw = await fetch(`${DOMAIN}${PORT}/${RESOURCE}`);
     const response = await raw.json();
-    populateNamesList(response.names);
+    const usernames = response.rows
+    maxCostumer = usernames.length
+    //console.log(response.rows)
+    usernames.forEach((row)=>{
+      //<option value="btc">BTC</option>
+      const nameOption = document.createElement('option')
+      nameOption.innerText = row[0]
+      nameOption.setAttribute('value', row)
+      dropName.appendChild(nameOption)
+     // console.log(name)
+    })
+    console.log(dropQuantity)
+    let quantityArray = Array.from({length: maxCostumer})
+    quantityArray = quantityArray.map((x,i) => i)
+    console.log(quantityArray)
+    quantityArray.splice(0,2)
+    quantityArray.forEach(( value)=>{
+      const numberOption = document.createElement('option')
+      numberOption.innerText = value
+      numberOption.setAttribute('value', value)
+      dropQuantity.appendChild(numberOption)
+    })
+
   } catch (error) {
     console.log(error);
   }
 }
+dropName.addEventListener('change',(e)=>{
+  console.log(e.target.value)
+})
 
 const postEndpoint = async () => {
   try {
@@ -57,8 +87,8 @@ const postEndpoint = async () => {
   }
 }
 
-//getMain();
-//postEndpoint();
+getMain();
+postEndpoint();
 
 // Get the button element
 const button = document.getElementById("initBtn");
@@ -68,3 +98,5 @@ button.addEventListener("click", function() {
   // Navigate to index
   window.location.href = "index.html";
 });
+
+

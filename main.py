@@ -14,9 +14,11 @@ names = list(df['Name'])
 @app.route("/names", methods=["GET"])
 def index():
   global names
+  global df
   return jsonify({
     "names": names, 
-    "columns": list(df.columns)
+    "columns": list(df.columns),
+    "rows": df.values.tolist()
   })
 
 # POST Endpoint =============================================================================
