@@ -38,6 +38,7 @@ const getMain = async () => {
     const response = await raw.json();
     const usernames = response.rows
     maxCostumer = usernames.length
+
     //console.log(response.rows)
     usernames.forEach((row)=>{
       //<option value="btc">BTC</option>
@@ -45,32 +46,57 @@ const getMain = async () => {
       nameOption.innerText = row[0]
       nameOption.setAttribute('value', row)
       dropName.appendChild(nameOption)
-     // console.log(name)
+
     })
-    console.log(dropQuantity)
+
     let quantityArray = Array.from({length: maxCostumer})
     quantityArray = quantityArray.map((x,i) => i)
-    console.log(quantityArray)
+ 
     quantityArray.splice(0,2)
     quantityArray.forEach(( value)=>{
       const numberOption = document.createElement('option')
       numberOption.innerText = value
       numberOption.setAttribute('value', value)
       dropQuantity.appendChild(numberOption)
+         //console.log(dropQuantity)
     })
 
-    var quantityDropdowns = document.querySelectorAll('[class^="number-select-"]');
-    quantityDropdowns.forEach(function(quantityDropdown){
-      var claseCompleta = quantityDropdown.className;
-      var numeroClase = claseCompleta.match(/number-select-(\d+)/)[1];
-      console.log("mi numero es", numeroClase);
+    dropQuantity.addEventListener('change', (e) => {
+      const selectedQuantity = parseInt(e.target.value);
+
+      let dropdownsContainer = document.getElementById("dropdowns-container");
+      dropdownsContainer.innerHTML = "";
+
+      for (let i = 0; i < selectedQuantity; i++) {
+        const newDropdown = document.createElement("select");
+        newDropdown.classList.add("form-select")
+        newDropdown.id.add
+
+        
+        usernames.forEach((row) => {
+          const nameOption = document.createElement('option');
+          nameOption.innerText = row[0];
+          newDropdown.appendChild(nameOption);
+        });
+        
+        dropdownsContainer.appendChild(newDropdown);
+
+        console.log(newDropdown)
+
+      }
+
+
     });
+
+console.log(usernames)
+   
   } catch (error) {
     console.log(error);
   }
 }
+
 dropName.addEventListener('change',(e)=>{
-  console.log(e.target.value)
+  //console.log(e.target.value)
 })
 
 const postEndpoint = async () => {
