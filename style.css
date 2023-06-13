@@ -54,19 +54,20 @@ main {
 
 /*----Banner------*/
 .subtitle-banner{
+    margin-top: 20px;
+    margin-bottom: 0px;
+
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
+    font-weight: 300;
     box-sizing: border-box;
     color: #DEDEDE !important;
-    font-size: 16px;
+    font-size: 18px;
     font-family: "Inter", sans-serif;
 }
 
-h4 .title-banner {
-    font-size: x-large;
-    font-weight: extrabold;
+.title-banner {
+    font-size: 40px;
+    font-weight: 600;
 }
 .container {
     margin: 30px;
@@ -110,8 +111,8 @@ h4 .title-banner {
 }
 
 .title-header{
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 300;
     font-family: "Inter", sans-serif;
 }
 
@@ -184,6 +185,43 @@ h4 .title-banner {
     border-width: 1px;
     padding: 20px 20px;
     border-radius: 10px;
+}
+
+/*----Main: sabores recomendados------*/
+.container-flavors{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-flavors{
+    font-weight: 300;
+    font-size: 18px;
+    font-family: "Inter", sans-serif;
+}
+
+/*----Main: sliders de sabores------*/
+
+.container-sliders{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-sliders{
+    font-weight: 600;
+    font-size: 18px;
+    font-family: "Inter", sans-serif;
+}
+
+#submit-sliders--btn{
+    width: 100%;
 }
 
 character-value div {
