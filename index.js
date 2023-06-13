@@ -21,6 +21,7 @@ const populateNamesList = (namesList) => {
 
 const dropName = document.getElementById('inputGroupSelect01')
 const dropQuantity = document.getElementById('inputGroupSelect02')
+const newDropdownName = document.getElementById('newDropdownId');
 let maxCostumer;
 
 // fetch(`${DOMAIN}${PORT}/${RESOURCE}`)
@@ -67,37 +68,40 @@ const getMain = async () => {
       let dropdownsContainer = document.getElementById("dropdowns-container");
       dropdownsContainer.innerHTML = "";
 
+      const selectedFriends = [];
+
       for (let i = 0; i < selectedQuantity; i++) {
         const newDropdown = document.createElement("select");
         newDropdown.classList.add("form-select")
-        newDropdown.id.add
-
+        newDropdown.id = "newDropdownId"
         
         usernames.forEach((row) => {
           const nameOption = document.createElement('option');
           nameOption.innerText = row[0];
           newDropdown.appendChild(nameOption);
         });
-        
+
+        newDropdown.addEventListener('change', (e) => {
+        selectedFriends[i] = e.target.value;
+        console.log(selectedFriends);
+      });
         dropdownsContainer.appendChild(newDropdown);
 
         console.log(newDropdown)
 
       }
-
-
     });
 
-console.log(usernames)
-   
+//console.log(usernames)
   } catch (error) {
     console.log(error);
   }
 }
 
 dropName.addEventListener('change',(e)=>{
-  //console.log(e.target.value)
+  console.log(e.target.value)
 })
+
 
 const postEndpoint = async () => {
   try {
