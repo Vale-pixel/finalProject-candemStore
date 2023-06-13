@@ -4,7 +4,7 @@
 
 * {
     margin: 0;
-    padding: 20px 0px 0px 0px;
+    padding: 0;
     box-sizing: border-box;
     font-family: 'Be Vietnam Pro', sans-serif;
 
@@ -16,7 +16,6 @@ body {
 
 }
 main {
-
     padding: 0px;
     height: auto;
     background-color: #171717;
@@ -24,7 +23,56 @@ main {
 h1 {
     margin: 0%;
     color: #DEDEDE !important;
+    font-size: 20%;
+}
+h3 {
+    padding-top: 30px;
+    margin-left: 50px;
+    font-weight: 900;
+    margin-top: 0;
+    color: #DEDEDE !important;
+
 }
 h4 {
     color: #DEDEDE !important;
 }
+h4 .title-banner {
+    font-size: x-large;
+    font-weight: extrabold;
+}
+.container {
+    margin: 30px;
+}
+.dropdown {
+    padding-top: 30px;
+    margin-left: 50px;
+}
+.container-banner {
+    width: 100%;
+    height: 65vh;
+    background-image: url(https://images.unsplash.com/photo-1608270586620-248524c67de9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+    background-size: cover;
+    background-position: 69%;
+    border-radius: 0px 0px 50px 50px;
+    position: relative;
+    margin: 0px;
+  
+}
+.banner {
+   width: 100%;
+   height: 65vh;
+   background-size: cover;
+   border-radius: 0px 0px 50px 50px;
+   position: relative;
+   margin: 0;
+   background: #28282860;
+   backdrop-filter: blur(0.3rem);
+}
+.banner-text{
+    padding-top: 100px;
+    margin-left: 50px;
+    font-weight: 900;
+    margin-top: 0;
+}
+
+
