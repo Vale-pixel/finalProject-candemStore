@@ -22,8 +22,11 @@ const populateNamesList = (namesList) => {
 const dropName = document.getElementById('inputGroupSelect01')
 const dropQuantity = document.getElementById('inputGroupSelect02')
 const newDropdownName = document.getElementById('newDropdownId');
+const submitbtn = document.getElementById('submit-btn')
 let maxCostumer;
+let selectedFriends = [];
 
+submitbtn.addEventListener('click', () => setTastes())
 // fetch(`${DOMAIN}${PORT}/${RESOURCE}`)
 //   .then(raw => raw.json())
 //   .then(response => {
@@ -38,12 +41,15 @@ const getMain = async () => {
     const raw = await fetch(`${DOMAIN}${PORT}/${RESOURCE}`);
     const response = await raw.json();
     const usernames = response.rows
+    const friends = response.rows
     maxCostumer = usernames.length
 
     //console.log(response.rows)
     usernames.forEach((row)=>{
       //<option value="btc">BTC</option>
       const nameOption = document.createElement('option')
+      nameOption.classList.add("form-select")
+      nameOption.id = "inputGroupSelect01"
       nameOption.innerText = row[0]
       nameOption.setAttribute('value', row)
       dropName.appendChild(nameOption)
@@ -52,10 +58,12 @@ const getMain = async () => {
 
     let quantityArray = Array.from({length: maxCostumer})
     quantityArray = quantityArray.map((x,i) => i)
- 
+
     quantityArray.splice(0,2)
     quantityArray.forEach(( value)=>{
       const numberOption = document.createElement('option')
+      numberOption.classList.add("form-select")
+      numberOption.id = "inputGroupSelect02"
       numberOption.innerText = value
       numberOption.setAttribute('value', value)
       dropQuantity.appendChild(numberOption)
@@ -68,14 +76,13 @@ const getMain = async () => {
       let dropdownsContainer = document.getElementById("dropdowns-container");
       dropdownsContainer.innerHTML = "";
 
-      const selectedFriends = [];
 
       for (let i = 0; i < selectedQuantity; i++) {
         const newDropdown = document.createElement("select");
         newDropdown.classList.add("form-select")
         newDropdown.id = "newDropdownId"
         
-        usernames.forEach((row) => {
+        friends.forEach((row) => {
           const nameOption = document.createElement('option');
           nameOption.innerText = row[0];
           nameOption.setAttribute('value', row)
@@ -99,12 +106,7 @@ const getMain = async () => {
   }
 }
 
-dropName.addEventListener('change',(e)=>{
-  console.log(e.target.value)
-})
-
-
-const postEndpoint = async () => {
+const postEndpoint = async (selectedCostumers) => {
   try {
     const raw = await fetch(
       `${DOMAIN}${PORT}/${POST_ROUTE}`,
@@ -114,8 +116,7 @@ const postEndpoint = async () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          'person1': 'Olivia',
-          'person2': 'Sophia'
+          "data" : selectedCostumers
         })
       }
     );
@@ -126,8 +127,19 @@ const postEndpoint = async () => {
   }
 }
 
+function setTastes() {
+  const costumerValues = selectedFriends.map((costumer)=> costumer.split(","))
+  console.log(costumerValues)
+  postEndpoint(costumerValues);
+}
+dropName.addEventListener('change',(e)=>{
+  console.log(e.target.value)
+})
+
+
+
 getMain();
-postEndpoint();
+
 
 
 

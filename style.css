@@ -235,15 +235,34 @@ character-value div {
     align-items: center;
     padding-left: 10px;
 }
+#newDropdownId {
+    margin: 10px;
+    background-color: #1E1E1E;
+    border-color: #4D4D4D;
+    color: #BBBBBB;
+}
+#inputGroupSelect02 {
+    margin: 10px;
+    background-color: #1E1E1E;
+    border-color: #4D4D4D;
+    color: #BBBBBB;
+}
+
+#inputGroupSelect01 {
+    margin: 10px;
+    background-color: #1E1E1E;
+    border-color: #4D4D4D;
+    color: #BBBBBB;
+}
 
 #slider {
     width: 200px;
     color: #DEDEDE
-  }
-  
-  #slider-value {
+}
+
+#slider-value {
     font-size: 18px;
     margin-top: 10px;
-  }
+}
 
 
