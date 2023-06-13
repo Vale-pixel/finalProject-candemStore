@@ -3,6 +3,8 @@ const PORT = 5001;
 // Resources
 const RESOURCE = 'names';
 const POST_ROUTE = 'post_endpoint';
+
+
 // Elements
 const listContainer = document.querySelector('.names-list');
 console.log(listContainer);
@@ -28,7 +30,7 @@ let maxCostumer;
 //     populateNamesList(response.names);
 //   })
 //   .catch(e => console.log(e));
-
+// Add a click event listener to the button
 
 const getMain = async () => {
   try {
@@ -90,13 +92,5 @@ const postEndpoint = async () => {
 getMain();
 postEndpoint();
 
-// Get the button element
-const button = document.getElementById("initBtn");
-
-// Add a click event listener to the button
-button.addEventListener("click", function() {
-  // Navigate to index
-  window.location.href = "index.html";
-});
 
 
