@@ -10,6 +10,18 @@ CORS(app)
 df = pd.read_csv('CANDEM.csv')
 names = list(df['Name'])
 
+def calcular_promedio_columnas(currentDataframe):
+    # Calcular el promedio de cada columna
+    promedios = currentDataframe.mean()
+    # Filtrar los promedios mayores a 4
+    promedios_mayores_a_4 = promedios[promedios > 4]
+
+    # Mostrar los resultados
+    print("Promedios mayores a 4:")
+    print(promedios_mayores_a_4)
+
+
+
 # GET Endpoint =============================================================================
 @app.route("/names", methods=["GET"])
 def index():
@@ -28,7 +40,16 @@ def create_data():
     data = request.get_json()
     if not data:
         return (jsonify({'error': 'No data provided'}), 400)
-    print(df[df['Name'] == data['person1']])
+    costumers = data["data"]
+    
+    costumersInitialValues = [x[1:] for x in costumers]
+    costumersValues = [[int(f) for f in x] for x in costumersInitialValues]
+    costumersDf = pd.DataFrame(costumersValues)
+    columns = list(df.columns)[1:]
+    costumersDf.columns = columns
+    calcular_promedio_columnas(costumersDf)
+    print(costumersDf)
+    #print(costumersDf, "??????????????????")
     return (jsonify({'response': 'ok all good', 'data': data}), 201)
 
 # Execute the app instance

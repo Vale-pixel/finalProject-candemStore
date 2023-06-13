@@ -22,8 +22,11 @@ const populateNamesList = (namesList) => {
 const dropName = document.getElementById('inputGroupSelect01')
 const dropQuantity = document.getElementById('inputGroupSelect02')
 const newDropdownName = document.getElementById('newDropdownId');
+const submitbtn = document.getElementById('submit-btn')
 let maxCostumer;
+let selectedFriends = [];
 
+submitbtn.addEventListener('click', () => setTastes())
 // fetch(`${DOMAIN}${PORT}/${RESOURCE}`)
 //   .then(raw => raw.json())
 //   .then(response => {
@@ -73,7 +76,6 @@ const getMain = async () => {
       let dropdownsContainer = document.getElementById("dropdowns-container");
       dropdownsContainer.innerHTML = "";
 
-      const selectedFriends = [];
 
       for (let i = 0; i < selectedQuantity; i++) {
         const newDropdown = document.createElement("select");
@@ -104,12 +106,7 @@ const getMain = async () => {
   }
 }
 
-dropName.addEventListener('change',(e)=>{
-  console.log(e.target.value)
-})
-
-
-const postEndpoint = async () => {
+const postEndpoint = async (selectedCostumers) => {
   try {
     const raw = await fetch(
       `${DOMAIN}${PORT}/${POST_ROUTE}`,
@@ -119,8 +116,7 @@ const postEndpoint = async () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          'person1': 'Olivia',
-          'person2': 'Sophia'
+          "data" : selectedCostumers
         })
       }
     );
@@ -131,8 +127,19 @@ const postEndpoint = async () => {
   }
 }
 
+function setTastes() {
+  const costumerValues = selectedFriends.map((costumer)=> costumer.split(","))
+  console.log(costumerValues)
+  postEndpoint(costumerValues);
+}
+dropName.addEventListener('change',(e)=>{
+  console.log(e.target.value)
+})
+
+
+
 getMain();
-postEndpoint();
+
 
 
 
