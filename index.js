@@ -78,6 +78,7 @@ const getMain = async () => {
         usernames.forEach((row) => {
           const nameOption = document.createElement('option');
           nameOption.innerText = row[0];
+          nameOption.setAttribute('value', row)
           newDropdown.appendChild(nameOption);
         });
 
