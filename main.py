@@ -48,7 +48,7 @@ def create_data():
     columns = list(df.columns)[1:]
     costumersDf.columns = columns
     calcular_promedio_columnas(costumersDf)
-    print(costumersDf)
+    #print(costumersDf)
     #print(costumersDf, "??????????????????")
     return (jsonify({'response': 'ok all good', 'data': data}), 201)
 
