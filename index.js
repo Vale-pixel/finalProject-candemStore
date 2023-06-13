@@ -83,6 +83,7 @@ const getMain = async () => {
         friends.forEach((row) => {
           const nameOption = document.createElement('option');
           nameOption.innerText = row[0];
+          nameOption.setAttribute('value', row)
           newDropdown.appendChild(nameOption);
         });
 
@@ -124,7 +125,7 @@ const postEndpoint = async () => {
       }
     );
     const response = await raw.json();
-    console.log(response);
+   // console.log(response);
   } catch (error) {
     console.log(error);
   }
