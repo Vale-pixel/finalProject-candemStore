@@ -59,6 +59,12 @@ const getMain = async () => {
       dropQuantity.appendChild(numberOption)
     })
 
+    var quantityDropdowns = document.querySelectorAll('[class^="number-select-"]');
+    quantityDropdowns.forEach(function(quantityDropdown){
+      var claseCompleta = quantityDropdown.className;
+      var numeroClase = claseCompleta.match(/number-select-(\d+)/)[1];
+      console.log("mi numero es", numeroClase);
+    });
   } catch (error) {
     console.log(error);
   }
