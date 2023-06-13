@@ -17,8 +17,9 @@ def calcular_promedio_columnas(currentDataframe):
     promedios_mayores_a_4 = promedios[promedios > 4]
 
     # Mostrar los resultados
-    print("Promedios mayores a 4:")
-    print(promedios_mayores_a_4)
+    return promedios_mayores_a_4.to_dict()
+    #print("Promedios mayores a 4:")
+    #print(promedios_mayores_a_4)
 
 
 
@@ -47,10 +48,11 @@ def create_data():
     costumersDf = pd.DataFrame(costumersValues)
     columns = list(df.columns)[1:]
     costumersDf.columns = columns
-    calcular_promedio_columnas(costumersDf)
+    promedios_mayores_a_4 = calcular_promedio_columnas(costumersDf)
+    print(type(promedios_mayores_a_4))
     #print(costumersDf)
     #print(costumersDf, "??????????????????")
-    return (jsonify({'response': 'ok all good', 'data': data}), 201)
+    return (jsonify({'response': 'ok all good', 'data': promedios_mayores_a_4}), 201)
 
 # Execute the app instance
 # The app will run locally in: http://localhost:5001/ after execution

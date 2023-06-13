@@ -23,7 +23,9 @@ const dropName = document.getElementById('inputGroupSelect01')
 const dropQuantity = document.getElementById('inputGroupSelect02')
 const newDropdownName = document.getElementById('newDropdownId');
 const submitbtn = document.getElementById('submit-btn')
+const newSuggestionId = document.getElementById('container-suggestions');
 let maxCostumer;
+let suggestions;
 let selectedFriends = [];
 
 submitbtn.addEventListener('click', () => setTastes())
@@ -53,7 +55,6 @@ const getMain = async () => {
       nameOption.innerText = row[0]
       nameOption.setAttribute('value', row)
       dropName.appendChild(nameOption)
-
     })
 
     let quantityArray = Array.from({length: maxCostumer})
@@ -76,7 +77,7 @@ const getMain = async () => {
       let dropdownsContainer = document.getElementById("dropdowns-container");
       dropdownsContainer.innerHTML = "";
 
-
+console.log(selectedQuantity)
       for (let i = 0; i < selectedQuantity; i++) {
         const newDropdown = document.createElement("select");
         newDropdown.classList.add("form-select")
@@ -121,7 +122,20 @@ const postEndpoint = async (selectedCostumers) => {
       }
     );
     const response = await raw.json();
-   // console.log(response);
+    console.log(response.data);
+    suggestions = response.data
+
+      // Clear the existing suggestions
+      newSuggestionId.innerHTML = "";
+
+      Object.keys(suggestions).forEach((suggestion) => {
+        const suggestionElement = document.createElement('p');
+        suggestionElement.classList.add("a");
+        suggestionElement.textContent = JSON.stringify(suggestion);
+  
+        newSuggestionId.appendChild(suggestionElement);
+      });
+
   } catch (error) {
     console.log(error);
   }
