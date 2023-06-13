@@ -38,12 +38,15 @@ const getMain = async () => {
     const raw = await fetch(`${DOMAIN}${PORT}/${RESOURCE}`);
     const response = await raw.json();
     const usernames = response.rows
+    const friends = response.rows
     maxCostumer = usernames.length
 
     //console.log(response.rows)
     usernames.forEach((row)=>{
       //<option value="btc">BTC</option>
       const nameOption = document.createElement('option')
+      nameOption.classList.add("form-select")
+      nameOption.id = "inputGroupSelect01"
       nameOption.innerText = row[0]
       nameOption.setAttribute('value', row)
       dropName.appendChild(nameOption)
@@ -52,10 +55,12 @@ const getMain = async () => {
 
     let quantityArray = Array.from({length: maxCostumer})
     quantityArray = quantityArray.map((x,i) => i)
- 
+
     quantityArray.splice(0,2)
     quantityArray.forEach(( value)=>{
       const numberOption = document.createElement('option')
+      numberOption.classList.add("form-select")
+      numberOption.id = "inputGroupSelect02"
       numberOption.innerText = value
       numberOption.setAttribute('value', value)
       dropQuantity.appendChild(numberOption)
@@ -75,7 +80,7 @@ const getMain = async () => {
         newDropdown.classList.add("form-select")
         newDropdown.id = "newDropdownId"
         
-        usernames.forEach((row) => {
+        friends.forEach((row) => {
           const nameOption = document.createElement('option');
           nameOption.innerText = row[0];
           newDropdown.appendChild(nameOption);
