@@ -94,7 +94,7 @@ main {
    position: relative;
    margin: 0;
    background: #28282860;
-   backdrop-filter: blur(0.3rem);
+   backdrop-filter: blur(0.2rem);
    display: flex;
    justify-content: center;
    flex-direction: column;
@@ -240,6 +240,11 @@ width: 100%;
 
 #submit-sliders--btn{
     width: 100%;
+}
+
+.recommendationClass{
+    font-size: 20px;
+    color: #A17400;
 }
 
 /*----Main: recomendaciones finales------*/

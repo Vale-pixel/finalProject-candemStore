@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
+import numpy as np
 
 # Declare the APP server instance
 app = Flask(__name__)
@@ -18,28 +19,30 @@ def calcular_promedio_columnas(currentDataframe):
     promedios = currentDataframe.mean()
 
     # Mostrar los resultados
-    return promedios.to_dict()
+    return promedios.tolist()
     #print("Promedios mayores a 4:")
     #print(promedios_mayores_a_4)
 
 def euclidean_distance(point1, point2):
-    return np.sqrt(np.sum((point1 - point2) ** 2))
+  return np.sqrt(np.sum((point1 - point2) ** 2))
 
 # def knn(data, proto_beer, k=3):
 #     distances = [(index, euclidean_distance(row, proto_beer)) for index, row in data.iterrows()]
 #     distances.sort(key=lambda x: x[1])
 #     return [products[distances[i][0]] for i in range(k)]
 
-# def knn(data,proto_beer, k=3):
-#     distances = []
+def knn(data,proto_person, k=3):
+    distances = []
 
-#     for index, row in data.iterrows():
-#         distance = euclidean_distance(row, proto_beer)
-#         distances.append((index, distance))
-
-#     distances.sort(key=lambda x: x[1])
-#     print(distances)
-#     return [products[distances[i][0]] for i in range(k)]
+    #print(proto_person)
+    #print(data)
+    for index, row in data.iterrows():
+      distance = euclidean_distance(row, proto_person)
+      distances.append((index, distance))
+    #print(distances)
+    distances.sort(key=lambda x: x[1])
+    #print(distances)
+    return [products[distances[i][0]] for i in range(k)]
 
 # GET Endpoint =============================================================================
 @app.route("/names", methods=["GET"])
@@ -76,14 +79,14 @@ def create_data():
     costumersDf = pd.DataFrame(costumersValues)
     columns = list(df.columns)[1:]
     costumersDf.columns = columns
-    protoPersona = calcular_promedio_columnas(costumersDf)
-
-    # print(recommendations = knn(beer, promedios_mayores_a_4, k=3))
-
-    print(type(promedios_mayores_a_4))
+    protoPerson = calcular_promedio_columnas(costumersDf)
+    beerValues = beer.iloc[: , 1:]
+    beers = knn(beerValues, protoPerson, k=3)
+    print(beers)
+    #print(protoPerson)
     #print(costumersDf)
     #print(costumersDf, "??????????????????")
-    return (jsonify({'response': 'ok all good', 'data': promedios_mayores_a_4}), 201)
+    return (jsonify({'response': 'ok all good', 'data': beers}), 201)
 
 # Execute the app instance
 # The app will run locally in: http://localhost:5001/ after execution

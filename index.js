@@ -128,9 +128,10 @@ const postEndpoint = async (selectedCostumers) => {
       // Clear the existing suggestions
       newSuggestionId.innerHTML = "";
 
-      Object.keys(suggestions).forEach((suggestion) => {
+      Object.values(suggestions).forEach((suggestion) => {
         const suggestionElement = document.createElement('p');
-        suggestionElement.classList.add("a");
+        suggestionElement.classList.add("recommendationClass");
+        suggestionElement.id = "recommendationId"
         suggestionElement.textContent = JSON.stringify(suggestion);
   
         newSuggestionId.appendChild(suggestionElement);
